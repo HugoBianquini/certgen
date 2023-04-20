@@ -58,7 +58,8 @@ const serverlessConfiguration: AWS = {
       ]
     }
   },
-  package: { individually: true },
+  // Include files that are not inside functions folder
+  package: { individually: false, include: ["./src/templates/**"] },
   custom: {
     esbuild: {
       bundle: true,
