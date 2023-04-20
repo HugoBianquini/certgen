@@ -17,9 +17,16 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
     iamRoleStatements: [
+      // Permissions to dynamodb
       {
         Effect: "Allow",
         Action: ["dynamodb:*"],
+        Resource: ["*"]
+      },
+      // Permissions for S3
+      {
+        Effect: "Allow",
+        Action: ["s3:*"],
         Resource: ["*"]
       }
     ]
@@ -50,6 +57,7 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+      external: ["chrome-aws-lambda", "puppeteer-core"]
     },
     dynamodb: {
       stages: ["dev", "local"],
